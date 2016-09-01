@@ -33,7 +33,12 @@ Iterate over each element of the array from `i` to `j` to sum each element.
 
 
 ### Approach #2 Segment Tree
+(https://leetcode.com/articles/range-sum-query-mutable/#approach-1-naive-time-limit-exceeded)
 
 #### Description
 
 #### Time Complexity
+
+### Approach #3 Binary Indexed Tree
+
+(https://discuss.leetcode.com/topic/31599/java-using-binary-indexed-tree-with-clear-explanation)
