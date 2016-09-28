@@ -1,9 +1,6 @@
-/**
-* Constructor to create a binary search tree
-* LEFT is LESS than root
-* RIGHT is MORE than root
-*
-*/
+'use strict';
+
+/****************************************************************************************************/
 
 const BST = function (root) {
   this.value = root;
@@ -58,8 +55,32 @@ aa.addChild(13);
 aa.addChild(16);
 aa.addChild(8);
 
-console.log(aa);
+/****************************************************************************************************/
 
-aa.removeChild(2)
+const checkBST = root => {
+  const values = [];
 
-console.log(aa);
+  const innerRecurse = node => {
+    if (node !== null) {
+      innerRecurse(node.left);
+      values.push(node.value);
+      innerRecurse(node.right);
+    }
+  };
+
+  const checkifSorted = arr => {
+    return arr.reduce((acc, curr, i) => {
+      if (i === arr.length -1) {
+        return acc;
+      }
+
+      return acc && (curr < arr[i+1]);
+    }, true);
+  };
+
+  innerRecurse(root);
+  console.log(values);
+  return checkifSorted(values);
+};
+
+console.log(checkBST(aa));
