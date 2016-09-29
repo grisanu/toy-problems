@@ -1,4 +1,4 @@
-// Return all possible plays in n rounds as arrays
+ // Return all possible plays in n rounds as arrays
 // ie. n = 3 => [ 'rrr', 'ppp', 'sss', 'rps', ...];
 const rps = (n) => {
   const moves = ['r', 'p', 's'];
