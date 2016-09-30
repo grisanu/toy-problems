@@ -1,3 +1,23 @@
+const reverse = linkedlist => {
+  let currNode = linkedlist.head;
+  let prevNode = null;
+  let tmp;
+
+  while (currNode !== null) {
+    tmp = currNode.next;
+    currNode.next = prevNode;
+    prevNode = currNode;
+    currNode = tmp;
+  }
+
+  // reverse head and tail
+  tmp = linkedlist.head;
+  linkedlist.head = linkedlist.tail;
+  linkedlist.tail = tmp;
+
+  return linkedlist;
+};
+
 /**************************************************************************************************/
 var LinkedList = function(){
   //fill me in!
@@ -59,25 +79,5 @@ aa.addToTail(5);
 aa.addToTail(6);
 console.log(aa);
 /**************************************************************************************************/
-
-const reverse = linkedlist => {
-  let currNode = linkedlist.head;
-  let prevNode = null;
-  let tmp;
-
-  while (currNode !== null) {
-    tmp = currNode.next;
-    currNode.next = prevNode;
-    prevNode = currNode;
-    currNode = tmp;
-  }
-
-  // reverse head and tail
-  tmp = linkedlist.head;
-  linkedlist.head = linkedlist.tail;
-  linkedlist.tail = tmp;
-
-  return linkedlist;
-};
 
 console.log(reverse(aa));

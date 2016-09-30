@@ -1,30 +1,34 @@
-'use strict';
+/**
+* Find the maximum depth of a BST
+*
+*/
 
-const checkBST = root => {
-  const values = [];
+const findMaxDepth = root => {
+  let firstQ = [root];
+  let secondQ = [];
+  let depth = 0;
 
-  const innerRecurse = node => {
-    if (node !== null) {
-      innerRecurse(node.left);
-      values.push(node.value);
-      innerRecurse(node.right);
-    }
-  };
-
-  const checkifSorted = arr => {
-    return arr.reduce((acc, curr, i) => {
-      if (i === arr.length -1) {
-        return acc;
+  while (firstQ.length > 0) {
+    firstQ.forEach(node => {
+      if (node.left !== null) {
+        secondQ.push(node.left);
       }
 
-      return acc && (curr < arr[i+1]);
-    }, true);
-  };
+      if (node.right !== null) {
+        secondQ.push(node.right);
+      }
+    });
 
-  innerRecurse(root);
-  console.log(values);
-  return checkifSorted(values);
+    if (secondQ.length === 0) {
+      return depth;
+    }
+
+    firstQ = secondQ;
+    secondQ = [];
+    depth++;
+  }
 };
+
 
 /****************************************************************************************************/
 
@@ -75,7 +79,6 @@ const aa = new BST(10);
 aa.addChild(6);
 aa.addChild(11);
 aa.addChild(3);
-aa.addChild(1);
 aa.addChild(20);
 aa.addChild(13);
 aa.addChild(16);
@@ -83,4 +86,4 @@ aa.addChild(8);
 
 /****************************************************************************************************/
 
-console.log(checkBST(aa));
+console.log(findMaxDepth(aa));

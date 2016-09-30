@@ -41,7 +41,7 @@ BST.prototype.removeChild = function (value) {
     }
   } else {
     if (this.right === null) {
-
+      return false;
     } else if (this.right.removeChild(value)){
       this.right = null;
     }
