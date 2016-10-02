@@ -42,43 +42,23 @@ all subsequent persons because they are outside of his selection criteria.
 
 const queueReconstruction = queue => {
   const results = [];
-  // sort by height
+  // sort by height and then if height is the same sort by ppl in front
   queue = queue.sort((a, b) => {
-    return a[0]-b[0];
+    if (a[0] < b[0]) {
+      return -1;
+    } else if (a[0] > b[0]) {
+      return 1;
+    } else {
+      return a[1]-b[1];
+    }
   });
-  // then sort by people in front
-  let tmp1 = [];
-  let tmp2 = [];
-  let curr = queue[queue.length - 1][0];
-
-  while (queue.length > 0) {
-    let person = queue.pop();
-
-    if (curr !== person[0]) {
-      curr = person[0];
-      tmp1.sort((a, b) => {
-        return a[1]-b[1];
-      });
-      tmp2 = tmp2.concat(tmp1);
-      tmp1 = [];
-    }
-
-    tmp1.push(person);
-
-    if (queue.length === 0) {
-      tmp1.sort((a, b) => {
-        return a[1]-b[1];
-      });
-      tmp2 = tmp2.concat(tmp1);
-    }
-  }
 
   // splice by index
-  queue = tmp2.reverse();
   while (queue.length > 0) {
     const person = queue.pop();
     results.splice(person[1], 0, person);
   }
+
   return results;
 
 };
